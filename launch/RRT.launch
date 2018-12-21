@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<!--	This launch file uses the true x, y coordinates from Gazebo and maps it to /pf/viz/inferred_pose to insert into pure_pursuit code.-->
+  	
+	<node pkg="rviz" type="rviz" name="rviz" args="-d $(find Racecar-Local-Planner)/rviz_cfg/RRT.rviz" output="screen"/>
+	<node pkg="Racecar-Local-Planner" name="RRT_grid_planner" type="RRT_grid_planner" output="screen" />
+  		
+</launch>
