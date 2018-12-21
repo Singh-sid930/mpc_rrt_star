@@ -16,19 +16,19 @@ These dependencies are important to install the package:
 1. CSV
 2. numpy
 3. Scipy
-4. IPOPT (Ubuntu 16.04 and above) 
-	$ sudo apt install build-essential python-dev python-six cython coinor-libipopt1v5 coinor-libipopt-dev
-	$ git clone https://github.com/matthias-k/cyipopt.git
-	$ cd cyipopt
-	$ sudo python setup.py install
-5. clone the repository 
-	git clone https://github.com/Singh-sid930/MPC_RRT_Star.git
+4. IPOPT (Ubuntu 16.04 and above) <br />
+	$ sudo apt install build-essential python-dev python-six cython coinor-libipopt1v5 coinor-libipopt-dev<br />
+	$ git clone https://github.com/matthias-k/cyipopt.git<br />
+	$ cd cyipopt<br />
+	$ sudo python setup.py install<br />
+5. clone the repository<br /> 
+	git clone https://github.com/Singh-sid930/MPC_RRT_Star.git<br />
 6. Locate the scripts Locate the scripts ‘MPC_tracker.py’ and ‘next_waypoint.py’ and make them executable using the
-following command.
-	$ chmod +x “script name”
+following command.<br />
+	$ chmod +x “script name”<br />
 
 7. source the current setup file from the ROS workspace and make the workspace using command catkin_make
-8. Roslaunch the package: 
+8. Roslaunch the package: <br />
 	$ roslaunch Racecar-Local-Planner RRT_MPC_SIM.launch
 
 
