@@ -22,6 +22,7 @@ These dependencies are important to install the package:
 	$ cd cyipopt
 	$ sudo python setup.py install
 5. clone the repository 
+	git clone https://github.com/Singh-sid930/MPC_RRT_Star.git
 6. Locate the scripts Locate the scripts ‘MPC_tracker.py’ and ‘next_waypoint.py’ and make them executable using the
 following command.
 	$ chmod +x “script name”
