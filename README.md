@@ -1,4 +1,4 @@
-# Racecar-Local-Planner-
+# Racecar-MPC-Planner
 ROS package for a motion planner used in head-to-head autonomous racing.
 
 The ROS package works coupled with the F110 repository for simulations. 
@@ -31,6 +31,8 @@ following command.<br />
 8. Roslaunch the package: <br />
 	$ roslaunch Racecar-Local-Planner RRT_MPC_SIM.launch
 
+This is the reference video : 
+https://www.youtube.com/watch?v=bRPpU_uRLFA
 
 For any issues mail on sidsingh@seas.upenn.edu or Singh.sid930@gmail.com
 
