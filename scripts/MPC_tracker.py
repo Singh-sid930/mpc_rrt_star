@@ -30,6 +30,8 @@ drive_msg = drive_param()
 
 
 def callback1(data):
+
+	#take in the odometry of the vehicle from the localization package.
 	global x_curr
 	global y_curr
 	global w_curr
@@ -47,6 +49,8 @@ def callback1(data):
 	y_curr = data.pose.position.y
 	
 def callback2(data):
+
+	#take in the goal point to reach from RRT* planner
 
 	global x_goal
 	global y_goal
@@ -68,6 +72,9 @@ def check_omega (w_g):
 
 
 class hs071(object):
+
+	#class for optimization of the trajectory
+
 	global ts
 	global x_goal
 	global y_goal
@@ -79,7 +86,8 @@ class hs071(object):
 
 	def objective(self, x):
 
-		# return x[0] * x[3] * np.sum(x[0:3]) + x[2]
+		#Define the objective function as a return function. 
+
 		return (x_goal - np.sum(x[0]*np.cos(x[1:])*ts) + (y_goal - np.sum(x[0]*np.sin(x[1:])*ts)) + ((x[5]-x[4])+(x[4]-x[3])+(x[3]-x[2])+(x[2]-x[1])+x[1]))
 		
 	def gradient(self, x):
@@ -106,9 +114,6 @@ class hs071(object):
 		# The callback for calculating the Jacobian
 		#
 		
-		# j = np.concatenate((np.prod(x) / x, 2*x))
-		# # print ("jacobian is : ")
-		# # print (j)
 		return np.array([0,0,0,0,-1,1,
 						0,0,0,-1,1,0,
 						0,0,-1,1,0,0, 
@@ -152,17 +157,18 @@ def main():
 
 
 
-	# Define the problem
-	#
+	# Define the problem constraints on the optimized variable vector
 	x0 = [0, 0, 0, 0, 0 ,0 ]
 	
 	lb = [0, -3, -3, -3, -3, -3 ]
 	ub = [8, 3, 3, 3, 3 , 3 ]
 
 
-	
+	#define the inequality constraints limit 
 	cl = [-0.418, -0.428,-0.428, -0.428, abs(w_goal - w_curr1),-0.4, 0 , 0 ]
 	cu = [0.428, 0.428,0.428, 0.428,  abs(w_goal - w_curr1) , +0.4, 100 , 100]
+
+	#define the non linear optimization problem
 
 	nlp = ipopt.problem(
 				n=len(x0),
@@ -202,6 +208,8 @@ def main():
 	vel_msg.y = omega
 	vel_msg.z = w_curr1
 
+	#publish the message containing the velocity commands. 
+
 	pub.publish(vel_msg)
 
 	goal_msg.x = x_goal
@@ -216,6 +224,9 @@ def main():
 	drive_msg.velocity = vel
 	drive_msg.angle = omega * 1.5
 	pub3.publish(drive_msg)
+
+
+	#For plotting Purposes
 
 	# x_coord = np.zeros(6)
 	# y_coord = np.zeros(6)

@@ -106,18 +106,7 @@ geometry_msgs::Point RRT::random_point(){
 	temp_p.x = (int)rand() % 200 ; //x max
 	temp_p.y = (int)rand() % 100 ; // y max
 	temp_p.z = 0;
-	return temp_p;
-}
-
-// Find the struct containing the nearest point from the random point
-int RRT::findNearestStruct(geometry_msgs::Point &p){
-	
-	//start with the root node of the tree	
-	geometry_msgs::Point n = structVect[0].node;
-	int nearest_idx = 0;
-	
-	for (int i=0; i<structVect.size();i++){
-		if (dist(p,structVect[i].node) < dist(p,n)) {
+	return temp_p;odest(p,n)) {
 			n = structVect[i].node;	
 			nearest_idx = i;
 		}
